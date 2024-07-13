@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AI Helath care</title>
+  <link rel="stylesheet" href="styles.css">
+  <script src="script.js" defer></script>
+</head>
+<body>
+  <nav>
+    <ul class="sidebar">
+      <li onclick=hideSidebar()><a href="#"><svg xmlns="http://www.w3.org/2000/svg" height="26" viewBox="0 96 960 960" width="26"><path d="m249 849-42-42 231-231-231-231 42-42 231 231 231-231 42 42-231 231 231 231-42 42-231-231-231 231Z"/></svg></a></li>
+      <li><a href="#">Features</a></li>
+          <li><a href="#">About Us</a></li>
+          <li><a href="#">Forum</a></li>
+          <li><a href="#">Contact</a></li>
+    </ul>
+    <ul>
+      <li><a href="#">AI healthcare</a></li>
+      <li><a href="#">Features</a></li>
+          <li><a href="#">About Us</a></li>
+          <li><a href="#">Forum</a></li>
+          <li><a href="#">Contact</a></li>
+      <li class="menu-button" onclick=showSidebar()><a href="#"><svg xmlns="http://www.w3.org/2000/svg" height="26" viewBox="0 96 960 960" width="26"><path d="M120 816v-60h720v60H120Zm0-210v-60h720v60H120Zm0-210v-60h720v60H120Z"/></svg></a></li>
+    </ul>
+  </nav>
+  <div class="background--image">
+    <img class="hero-image" src="hospital.jpg" alt="Hospital">
+    <div class="hero-text">
+      <h1 class="heading">Revolutionizing Healthcare with AI</h1>
+      <p>Experience cutting-edge diagnostics and personalized treatment plans  <br>driven by advanced AI technology.</p>
+    </div>
+  </div>
+  <div class="container">
+    <div class="wrapper">
+      <h2>AI Diagnostic Tool</h2>
+      <p class="sub-headings">Input patient symptoms to receive AI-based diagnostic results.</p>
+    </div>
+  
+  <div id="button-container"></div> <!-- Container to hold the button -->
+  
+
+<div class="wrapper">
+  <h2>Patient Data Dashboard</h2>
+  <p class="sub-headings">View and manage patient data,<br> appointments, and medical history</p>
+</div>
+</div>
+
+<div class="footer">
+  <p>&copy;2024 Ai HealthCare Platform. All right reserved. Privacy | Terms of service</p>
+</div>
+
+
+
+
+
+<script>
+ document.addEventListener('DOMContentLoaded', function() {
+  const wrapper = document.querySelector('.wrapper');
+  const buttonContainer = document.getElementById('button-container');
+  
+  wrapper.addEventListener('click', function() {
+    // Create the button if it doesn't already exist
+    if (!document.getElementById('upload-button')) {
+      const uploadButton = document.createElement('button');
+      uploadButton.id = 'upload-button';
+      uploadButton.innerText = 'Scan Your City';
+      buttonContainer.appendChild(uploadButton);
+
+      const uploadInput = document.createElement('input');
+      uploadInput.type = 'file';
+      uploadInput.id = 'upload-input';
+      buttonContainer.appendChild(uploadInput);
+
+      uploadButton.addEventListener('click', function() {
+        uploadInput.click(); // Trigger the file input click event
+      });
+
+      uploadInput.addEventListener('change', function() {
+        const file = uploadInput.files[0];
+        if (file) {
+          const reader = new FileReader();
+          reader.onload = function(e) {
+            let uploadedImage = document.querySelector('.uploaded-image');
+            if (!uploadedImage) {
+              uploadedImage = document.createElement('img');
+              uploadedImage.classList.add('uploaded-image');
+            }
+            uploadedImage.src = e.target.result;
+
+            // Append the image to the bottom of the wrapper div
+            wrapper.appendChild(uploadedImage);
+
+            // Hide the text when image is uploaded
+            const imageText = document.getElementById('imageText');
+            if (imageText) {
+              imageText.style.display = 'none';
+            }
+          };
+          reader.readAsDataURL(file);
+        }
+      });
+
+      uploadButton.style.display = 'block'; // Show the button
+    }
+  });
+});
+
+</script>
+
+  <script>
+    function showSidebar(){
+      const sidebar = document.querySelector('.sidebar')
+      sidebar.style.display = 'flex'
+    }
+    function hideSidebar(){
+      const sidebar = document.querySelector('.sidebar')
+      sidebar.style.display = 'none'
+    }
+  </script>
+</body>
+</html>
